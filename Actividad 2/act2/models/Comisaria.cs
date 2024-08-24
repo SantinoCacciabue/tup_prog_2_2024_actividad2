@@ -9,7 +9,7 @@ namespace act2.models
 {
     internal class Comisaria
     {
-        Guardia[] guardias = new Guardia[2];
+        public Guardia[] guardias = new Guardia[2];
         private ArrayList incidentes = new ArrayList();
         private ArrayList agentes = new ArrayList();
         public int cantGuardias = 0;
