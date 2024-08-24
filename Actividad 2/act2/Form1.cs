@@ -41,5 +41,61 @@ namespace act2
 
             }
         }
+
+        private void bAsignarGuardia_Click(object sender, EventArgs e)
+        {
+            if(cBguardias.SelectedIndex!= -1)
+            {
+                int nro = Convert.ToInt32(cBagentes.Text);
+                int h = Convert.ToInt32(nHora.Text);
+                int m = Convert.ToInt32(nMinutos.Text);
+                int minutos = Convert.ToInt32(tbMinutos.Text);
+
+                Guardia g = comisaria.AsignarGuardia(nro, h, m, minutos) as Guardia;
+                nHora.Text = "0";
+                nMinutos.Text = "0";
+                tbMinutos.Clear();
+                cBguardias.Items.Add($"{nro} ({g.HoraDesde}:{g.MinutoDesde} a {g.HoraHasta}:{g.MinutoHasta})");
+            }
+            else
+            {
+                MessageBox.Show("Seleccione el agente");
+            }
+            
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int tipoInc = (comboBox1.SelectedIndex)+1;
+            string motivo = tbMotivo.Text;
+            Policia agente = comisaria.VerAgente(Convert.ToInt32(cBguardias.Text));
+            Persona sujeto = new Persona(tbNombrePers.Text, (Convert.ToInt32(tbDniPer.Text)));
+            int h = Convert.ToInt32(nHoraInc.Text);
+            int m = Convert.ToInt32(nMinutoInc.Text);
+            comisaria.RegistrarIncidente(agente, sujeto, motivo, h, m, tipoInc);
+            tbMotivo.Clear();
+            tbNombrePers.Clear();
+            tbDniPer.Clear();
+            nMinutoInc.Text = "0";
+            nHoraInc.Text = "0";
+
+        }
+
+        private void bListarInc_Click(object sender, EventArgs e)
+        {
+            Incidentes incidentes = new Incidentes();
+            for(int i = 0; i < comisaria.CantidadIncidentes; i++)
+            {
+                Incidente inc = comisaria.VerIncidente(i);
+                incidentes.tBlista.Text += inc.VerDescripcion();
+            }
+            incidentes.ShowDialog();
+        }
+
+        private void cBguardias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
     }
 }

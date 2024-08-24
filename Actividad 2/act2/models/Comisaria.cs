@@ -22,7 +22,7 @@ namespace act2.models
         }
         public bool AsignarPolicia(Policia policia)
         {
-            if(agentes.Count <= 2 )
+            if(agentes.Count < 2 )
             {
                 agentes.Add( policia );
                 return true ;
@@ -53,10 +53,10 @@ namespace act2.models
             nuevo.Minuto = m;
             incidentes.Add(nuevo);
         }
-        public bool AsignarGuardia(int nro, int h, int m, int cantMinutos)
+        public Guardia AsignarGuardia(int nro, int h, int m, int cantMinutos)
         {
             cantGuardias++;
-            bool ret = false;
+            Guardia g = null;
             if (cantGuardias <= 2)
             {
                 for( int i = 0; i < agentes.Count; i++)
@@ -66,11 +66,11 @@ namespace act2.models
                     {
                         Guardia guardia = new Guardia(asignado, h, m, cantMinutos);
                         guardias[cantGuardias - 1] = guardia;
-                        ret = true;
+                        g = guardia;
                     }
                 }
             }
-            return ret;
+            return g;
         }
         public Incidente VerIncidente(int nroIncidente)
         {
