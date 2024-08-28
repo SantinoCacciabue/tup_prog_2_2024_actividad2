@@ -25,18 +25,18 @@ namespace act2.models
         {
             if(TipoIncidente == 0)
             {
-                return $"Denuncia policial, emitida a las {Hora}:{Minuto}" +
-                    $" Motivo:{Motivo}" +
-                    $" Oficial a cargo: {OficialACargo.VerDatos()} " +
-                    $"Sujeto denunciante: {Sujeto.VerDatos()}";
+                return $"{Environment.NewLine}Denuncia policial, emitida a las {Hora}:{Minuto}" +
+                    $"{Environment.NewLine} Motivo:{Motivo}" +
+                    $"{Environment.NewLine} Oficial a cargo: {OficialACargo.VerDatos()} " +
+                    $"{Environment.NewLine}Sujeto denunciante: {Sujeto.VerDatos()}";
             }
             else
             {
-                return $"Orden de arresto, emitida a las {Hora}:{Minuto}" +
-                    $" Motivo:{Motivo}" +
-                    $" Oficial a cargo: {OficialACargo.VerDatos()} " +
-                    $"Sujeto a arrestar: {Sujeto.VerDatos()} " +
-                    $"Orden: Por la presente se ordena el arresto inmediato de {Sujeto.VerDatos()} El Agente {OficialACargo.VerDatos()} está autorizado a proceder con el arresto conforme a las leyes y regulaciones aplicadas";
+                return $"{Environment.NewLine}Orden de arresto, emitida a las {Hora}:{Minuto}" +
+                    $"{Environment.NewLine} Motivo:{Motivo}" +
+                    $"{Environment.NewLine} Oficial a cargo: {OficialACargo.VerDatos()} " +
+                    $"{Environment.NewLine}Sujeto a arrestar: {Sujeto.VerDatos()} " +
+                    $"{Environment.NewLine}Orden: Por la presente se ordena el arresto inmediato de {Sujeto.VerDatos()} El Agente {OficialACargo.VerDatos()} está autorizado a proceder con el arresto conforme a las leyes y regulaciones aplicadas";
             }
         }
     }
